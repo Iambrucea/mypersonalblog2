@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon/cat-ninja.png">
+    <title>Lawi - A Gun in Time</title>
+  </head>
+  <body style="margin: 0; padding: 0">
+    <div
+      id="container"
+      style="position: absolute; width: auto; height: auto; inset: 0"
+    ></div>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <script>
+      window.RufflePlayer = window.RufflePlayer || {};
+      window.addEventListener("load", (event) => {
+        const ruffle = window.RufflePlayer.newest();
+        const player = ruffle.createPlayer();
+        const container = document.getElementById("container");
+        player.style.width = "100%";
+        player.style.height = "100%";
+        container.appendChild(player);
+        player.load("agunintime.swf");
+      });
+    </script>
+
+    <style>
+              .top-left-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            background-color: #124206; 
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: rgb(3, 75, 9);
+            text-align: center;
+        }
+    </style>
+        <button class="top-left-button" id="homeButton">L</button>
+        <script>
+          document.getElementById("homeButton").addEventListener("click", function() {
+              window.location.href = "index.html";
+          });
+      </script>
+  </body>
+</html>
