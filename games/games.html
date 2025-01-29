@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="download.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lawi - All games</title>
+    <style>
+        * {cursor: crosshair;}
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000;
+            color: #0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); /* Add texture to background */
+            background-repeat: repeat;
+        }
+        header {
+            background-color: #222;
+            color: #0f0;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px;
+            background-color: #111;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+        }
+        h1, h2 {
+            margin: 0 0 20px 0;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid #0f0;
+            background-color: #222;
+            color: rgb(255, 0, 0);
+            font-size: 16px;
+        }
+        .game-link {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            color: #0f0;
+            border: 1px solid #0f0;
+        }
+        .game-link:hover {
+            background-color: #065a03;
+            scale: 1.1;
+        }
+        .launch-button {
+            background-color: rgb(255, 0, 0);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .launch-button:hover {
+            background-color: rgb(49, 0, 0);
+    }
+    </style>
+    <script>
+        const games = ['Game request', 'Leaderboards', 'Sword masters IO', 'NEW 1v1LOL', 'Craftnite IO', 'Craftnite IO cheats', 'Shell shockers', 'Shell shockers cheats', 'SimplyUp IO', 
+                'Masked forces', 'Aliens nest', 'C.A.PT.S', 'Cat gunner', 'Nightpoint IO', 'Cat ninja', 'Big Tower Tiny Square', '10 minutes till dawn', 
+                'Hammer 2 reloaded', 'Rocket league', 'Sword life', 'Foggy fox', 'Smash karts', 'Bullet force', 'Station 141', 
+                'Skibidi games', 'Warrior survival', 'PolyTrack', 'Level Devil', 'Conq IO', 'Little alchemy 2', 'Gons IO', 'Sausage flip', 'Swingo', 'Quake', 'Eggy Car', 
+                'Thorns and balloons', 'Pixel wars', 'Pixel combat', 'Pixel gun', 'Pixel gun 2', 'Bear sus', 'Lethal sniper', 
+                'Tap goal', 'Cyberpunk racing', 'Drift hunters', 'Cartoon racing', 'Deepest sword', 'Zombz Royale', 
+                'Ballistic', 'Moto trial racing', 'World guesser', 'Archer master 3d', 'Death car IO', 'Rise higher', 'Burger bounty', 'Pixel apoc', 
+                'Sky rider', 'Snow rider', 'LOLbeans', 'Fury wars', 'Mario', 'Biters IO', 'Ice fishing', 'Ice fishing 3d', 
+                'Babel tower', 'Deip IO', 'Jungle TD', 'Mafia wars', 'Ragdoll archers', 'OSU', 
+                'Time shooter', 'Time shooter 2', 'Dead again', 'Water sort', 'Ships 3d', 'Sushi unroll', 'Synesthesia', 
+                'Ball sort', 'Angry birds', 'Rope spider', 'Avatar arena', 'Furious racing', 'Frying nemo', '8bit project laser bs', 
+                'Madalin 2', 'Madalin 3', 'Moon city stunt', 'Veloce', 'City rider', 'Adventure capitalist', 'Cardrive sim', 'Gun mayham', 'Yohoho IO', 
+                'Snowball IO', 'Leader strike', 'Gladihoppers', 'Sling drift', 'Dadish 1', 'Dadish 2', 'Dadish 3', 'Slowroads', 'Sunrise village', 
+                'Gswitch 1', 'Gswitch 2', 'Gswitch 3', 'Arcane archer', 'Diebrary', 'X trench run', 'The battle', 'Slope', 'Slope 2', 'Slope 3', 'Two ball 3d', 'Ev IO', 
+                'Crazy tunnel', 'Electron dash', 'City bus', 'Hover racer', 'Hex gl', 'Hover racer drive', 'Case clicker', 'Lumber inc', 
+                'Village craft', 'Gobble', 'DucklingsIO', 'Game of farmers', 'Submachine', 'Nut clicker', 'Mutazone', 
+                'Blumgi rocket', 'Blumgi castle', 'Blumgi slime', 'Blumgi ball', 'Blumgi Bloom', 'COD Zombies', 'Granny', 'Choppy Orc', 'Hoop Royale', 'Knife hit', 
+                'Bowling stars', '3d bowling', '3d dungeon', 'A gun in time', 'Traffic rider', 'Legend of Zelda', 'EvoWars', 'Highway traffic', 'Idle restaurants', 'Stickman archers', 'fnaf shooter', 'fnaf games', 
+                'Traffic rush', 'Curve ball 3d', 'Cookie click 1', 'Cookie click 2', 'Cookie click 3', 'Jungle market', 'Truck simulator', 'Agar paper io', 'PaperIO', 'PaperIO 2', 'PaperIO 3d', 
+                'Drift dudes', 'TABS', 'Subway surfers', 'Go kart', 'Cubito mayham', 'GobDun', '3d tower crasher', 'Pixel warfare', 'Free the key', 'Plactions', 'Recoil', 
+                'Stupid zombies 1', 'Stupid zombies 2', 'Grand Vegas simulator', 'Plants vs zombies', 'Paper fighters', 'Dragon vs Bricks', 
+                'Eaglercraft', 'Precision client', 'Paper minecraft', 'Skyblock', 'Coreball', 'Color match', 'Craft Mine', 'Mine clicker', 'Burger clicker', 'Blobby clicker', 
+                'Incredibox', 'Poop', 'Poop clicker 3', 'Dante', 'Super Heroes IO', 'Rolling missiles', 'Baldis basics', 'Blade ball', 
+                'Helix jump', 'Fast balls', 'Bottle flip', 'Bottle flip 3d', 'Castaway', 'Dont Escape 1', 'Dont Escape 2', 'Dont Escape 3', 'Town scraper', 'Dead paradise', 'Kart fight', 'Musk vs Zusk', 
+                'Fall beans', 'Tornado IO', 'WormIO', 'CS go', 'Swerve', 'Red ball', 'Tower  of destiny', 'A dark room', 'Rolling forests', 
+                'Particle clicker', 'Maze planet', 'Golf champions', 'Sling kong', 'Rooftop snipers 1', 'Rooftop snipers 2', 
+                'Dragon simulator', 'Fox simulator', 'Tiger simulator', 'Age of Conflict', 'Age of War', 'Age of War cheats', 'Car simulator', 'Tube clicker', 'Moto simulator', 'AI in the Sky', 
+                'Horse simulator', 'Deer simulator', 'Monster truck sim', 'Basketbros io', 'Raft wars', 'Catacombs', 'Panda simulator', 'Parrot simulator', 'Racoon simulator', 
+                'Antimatter dimensions', 'Idle dice', 'Hole IO', 'Brain tests', 'Evil Forest', 'Tallman run', 'Tall IO', 'Dyna boy', 'Apple knight', 'Planet Clicker', 'Super hot', 'Car rush', 
+                '4x4 drive', 'Aqua slide', 'Dots IO', 'Stacktris', 'Runaway kart', 'Money rush', 'Volley random', 'Adventure drivers', 'Santy is home', 
+                'Stick merge', 'Stick merge 2', 'Stickwar', 'Happy glass', 'Smiling glass', 'Smiling glass 2', 'Doomori', 'Tomb of the Mask', 'Roper', 'PolyArt 3d', 
+                'Penalty kick online', 'Doge miner', 'Pixel dash', 'Vex', 'Jumping shell', 'Who stole it', 'Factory balls', 'Factory balls 2', 'Factory balls 3', 'Gimme the airpod', 'Greybox', 'Kitchen gun game', 
+                'Knight adventure', 'Forge of empires', 'Alien invaders', 'Zoom be 2', 'Zoom be 3', 'Hanger', 'Bob the Robber', 
+                'Cubes 2048', 'Raft life', 'Draw racing', 'Knives crash', 'Black bit ninja 1', 'Black bit ninja 2', 'House of Hazards', 'Bloons', 'Checkers', 'Mine sweeper', 'Temple of boom', 
+                'Nugget royale', '8bit fiesta', 'Escape prison', 'Short life ', 'Short life 2', 'Draw the Hill', 'Game in a game', 
+                'Word city', '2048', '2048 multitask', '2048 online', '2048 suika', '2048 watermelon', 'Cut the rope', 
+                'Google Dino', 'Google snake', 'Flappy Bird', 'P craft', 'Push the square', '2 player battle', 'Admist the sky',
+                'Push the box', 'Stickman hook', 'Soccer random', 'Pill soccer', 'Flying truck', 'Eagle rider', 'CircleO', 'CircleO2', 'Down the hill', 'Tag', 
+                'Doodle jump', 'Maze dungeon', 'Neon war', 'Neon square', 'Room escape', 'Goal pinball', 'Sink it', 'Murder', 
+                'Football masters', 'Basketball legends', 'Basket random', 'Startup tycoon', 'FNF', 'Idle gold mining', 'Idle mining empire', 'Windows 11', 
+                'Fruit ninja', 'Monkey mart', 'Gun spin', 'Run 1', 'Run 2', 'Run 3', 'Tanuki sunset', 'Super tunnel rush', 
+                'Tunnel rush', 'Tunnel rush 2', 'Color tunnel', 'Color tunnel 2', '2048 Fusion', 'Traffic mania', 
+                'Mr bullet', 'Bumper cars', 'Bumper ball', 'Falling fred', 'Running fred', 'Skiing fred', 'Temple run', 'Glitch dash', 'OvO', 
+                'OvO 2', 'OvO 3', 'Crossy road','Grindcraft', 'Clicker heroes', 'Clicker heroes updated', 'Bitlife', 'Ngon', 'Rabbit Samurai 1', 'Rabbit Samurai 2', 
+                'Tap tap shots', 'Case simulator', 'Iron Snout', 'Bacon may die', 'Cave blast', 'Slither io', 
+                'Drift Boss', 'Drift boss cheats', 'KingKongCartRacing', 'Orange Clicker', 'Burrito Bison', 'Burrito Bison revenge', 
+                'Tiny fishing', 'Fishing frenzy', 'Fireboy and Watergirl', 'Universal Paperclips', 'Crazy fishing', 'Crazy cars', 'Car theif', 'Burnout drift', 
+                'Ball blaster', 'Wood blocks 3d', 'Block blast', '1v1.LOL', 'Retro bowl', 'Doom 1993', 
+                'Blockpost', 'Spacebar clicker', 'Idle breakout', 'Idle Restaurants', 'Blob opera', 
+                'Space company', 'Candy box 2', 'Moto X3M', 'Duck life', 'Bitcoin clicker', 'Monster tracks', 
+                'Drive mad', 'Adventure drivers', 'Bad ice cream 1', 'Bad ice cream 2', 'Bad ice cream 3', 'Funny shooter', 'Among us', 
+                'Wordle', 'Riddle school', 'Fortnight', 'Tic Tac Toe', 'ROM emulator'];
+    
+        function filterGames() {
+            let input = document.getElementById('gameSearch').value.toLowerCase();
+            let links = document.getElementsByClassName('game-link');
+            for (let i = 0; i < links.length; i++) {
+                let link = links[i];
+                if (link.textContent.toLowerCase().includes(input)) {
+                    link.style.display = "";
+                } else {
+                    link.style.display = "none";
+                }
+            }
+        }
+
+        function generateGameLinks() {
+    const container = document.querySelector('.container');
+    games.forEach(game => {
+        const link = document.createElement('div');
+        const gameFile = game.toLowerCase().replace(/\s+/g, '') + '.html';
+        link.className = 'game-link';
+        link.textContent = game;
+        link.addEventListener('click', () => {
+            window.location.href = gameFile;
+        });
+        container.appendChild(link);
+    });
+}
+
+
+        document.addEventListener('DOMContentLoaded', generateGameLinks);
+
+        function openAboutBlank() {
+            const win = window.open('about:blank', '_blank');
+            const url = "https://example.com/";
+            const iframe = win.document.createElement('iframe');
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "none";
+            iframe.src = url;
+            win.document.body.appendChild(iframe);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Lawi</h1>
+        <button class="launch-button" onclick="openAboutBlank()">Launch in about:blank</button>
+    </header>
+    <div class="container">
+        <input type="text" id="gameSearch" class="search-bar" onkeyup="filterGames()" placeholder="Search here...">
+    </div>
+</body>
+</html>
